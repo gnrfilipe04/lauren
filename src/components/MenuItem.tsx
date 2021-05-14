@@ -7,13 +7,14 @@ interface MenuItemProps extends PressableProps{
     id?: number;
     name: string,
     isActiveColor?: string;
+    fontFamily?: string
 }
 
-export function MenuItem({name, isActiveColor, ...props}: MenuItemProps){
+export function MenuItem({name, isActiveColor, fontFamily = fonts.latoRegular, ...props}: MenuItemProps){
 
     return (
         <Pressable style={[styles.menuItemContainer, {backgroundColor: isActiveColor}]} {...props}>
-            <Text style={styles.menuItemText}>
+            <Text style={[styles.menuItemText, { fontFamily: fontFamily}]}>
                 {name}
             </Text>
         </Pressable>
@@ -25,7 +26,6 @@ const styles = StyleSheet.create({
         borderRadius: 30
     },
     menuItemText: {
-        fontFamily: fonts.latoRegular,
         fontSize: 16,
         padding: 10,
         paddingHorizontal: 20,

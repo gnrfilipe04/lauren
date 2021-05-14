@@ -81,6 +81,7 @@ export function Menu(){
                         name={item.title}
                         onPress={() => handleActiveItem(item.id)}
                         isActiveColor={item.active ? colors.pink100 : '#fff'}
+                        fontFamily={item.active ? fonts.latoBold : fonts.latoRegular}
                     />
                 ))}
             </View>
