@@ -97,6 +97,6 @@ const styles = StyleSheet.create({
     menuContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginRight: 150
+        marginRight: 150,
     },
   });
