@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import { Dimensions, PixelRatio } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { ProductCard } from './ProductCard'
+import {ProductCardProps} from './ProductCard'
 
 //@ts-ignore
 const widthPercentageToDP = widthPercent => {
@@ -14,44 +16,37 @@ const heightPercentageToDP = heightPercent => {
     return PixelRatio.roundToNearestPixel(screenHeight * parseFloat(heightPercent) / 100);
 };
 
+
 export function SectionsProducts(){
+    const [allProductsCard, setAllProductsCard] = useState<ProductCardProps []>([])
+
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url:'http://10.0.0.106:3333/products',
+        })
+            .then(response => setAllProductsCard(response.data))
+            .catch(e => console.log(e))
+    }, [])
+
+    function filteredCategorieProduct(categorie: string = 'coats'){
+        setAllProductsCard(allProductsCard.filter(product =>  product.categorie === categorie))
+    }
+
     return(
         <ScrollView style={{marginTop: 30, paddingLeft: 20}} horizontal={true} showsHorizontalScrollIndicator={false}>
 
-            <ProductCard 
-                widthValue={widthPercentageToDP('52%')}
-                heightValue={heightPercentageToDP('32%')}
-                productName='Winter Coat'
-                productValue='R$ 80,00'
-            />
-
-            <ProductCard 
-                widthValue={widthPercentageToDP('52%')}
-                heightValue={heightPercentageToDP('32%')}
-                productName='Woolen Coat'
-                productValue='R$ 80,00'
-            />
-
-            <ProductCard 
-                widthValue={widthPercentageToDP('52%')}
-                heightValue={heightPercentageToDP('32%')}
-                productName='Oversize Coat'
-                productValue='R$ 72,00'
-            />
-
-            <ProductCard 
-                widthValue={widthPercentageToDP('52%')}
-                heightValue={heightPercentageToDP('32%')}
-                productName='Sizeheart Coat'
-                productValue='R$ 34,50'
-            />
-
-            <ProductCard 
-                widthValue={widthPercentageToDP('52%')}
-                heightValue={heightPercentageToDP('32%')}
-                productName='Bighow Coat'
-                productValue='R$ 77,32'
-            />
+            {allProductsCard.map(product => (
+                <ProductCard 
+                    key={product.id}
+                    id={product.id}
+                    productName={product.productName}
+                    productValue={product.productValue}
+                    categorie={product.categorie}
+                    widthValue={widthPercentageToDP('52%')}
+                    heightValue={heightPercentageToDP('32%')}
+                />
+            ))}
 
         </ScrollView>
     )

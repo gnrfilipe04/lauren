@@ -1,8 +1,10 @@
 import React from 'react'
-import { Dimensions, PixelRatio, Text, View } from 'react-native'
+import { Dimensions, PixelRatio, Text, View, StyleSheet } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-import fonts from '../styles/fonts'
+
 import { ProductCard } from './ProductCard'
+
+import fonts from '../styles/fonts'
 
 //@ts-ignore
 const widthPercentageToDP = widthPercent => {
@@ -17,10 +19,10 @@ const heightPercentageToDP = heightPercent => {
 
 export function RecommendedProducts(){
     return(
-        <View style={{ paddingLeft: 20, marginTop: 20}}>
-            <Text style={{fontFamily: fonts.latoBold, fontSize: 22}}>Recommended for you</Text>
+        <View style={styles.container}>
+            <Text style={styles.title}>Recommended for you</Text>
 
-            <ScrollView horizontal={true} style={{marginTop: 10}}>
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{marginTop: 10}}>
 
                 <ProductCard 
                     widthValue={widthPercentageToDP('40%')}
@@ -47,3 +49,14 @@ export function RecommendedProducts(){
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        paddingLeft: 20,
+        marginTop: 20,
+    },
+    title: {
+        fontFamily: fonts.latoBold,
+        fontSize: 22,
+    }
+})

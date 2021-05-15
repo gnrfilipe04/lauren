@@ -1,0 +1,44 @@
+{
+    "products": [
+        { 
+            "id": 1,
+            "productName": "Winter Coat",
+            "productValue": "R$ 80,00",
+            "categorie": "coat"
+        },
+        { 
+            "id": 2,
+            "productName": "Woolen Coat",
+            "productValue": "R$ 86,45",
+            "categorie": "coat" 
+        },
+        { 
+            "id": 3,
+            "productName": "Oversize Coat",
+            "productValue": "R$ 65,00",
+            "categorie": "coat" 
+        },
+        { 
+            "id": 4,
+            "productName": "Sizeheart Coat",
+            "productValue": "R$ 104,00",
+            "categorie": "coat" 
+        },
+        { 
+            "id": 5,
+            "productName": "Bighow Coat",
+            "productValue": "R$ 99,00",
+            "categorie": "coat"
+        },
+        { 
+            "id": 6,
+            "productName": "Custom Dresses",
+            "productValue": "R$ 99,00",
+            "categorie": "dresses"
+        }
+    ],
+    "comments": [
+      { "id": 1, "body": "some comment", "postId": 1 }
+    ],
+    "profile": { "name": "typicode" }
+  }
