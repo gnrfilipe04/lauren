@@ -1,11 +1,13 @@
 import React from 'react';
 import { useFonts, Lato_400Regular, Lato_700Bold } from '@expo-google-fonts/lato'
 import AppLoading from 'expo-app-loading';
+import { NavigationContainer } from '@react-navigation/native';
 import {Provider as PaperProvider} from 'react-native-paper'
 //@ts-ignore
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { Routes }  from './src/routes/routes';
+import { ProductsProvider } from './src/context/ProductsContext';
 
 
 export default function App() {
@@ -24,7 +26,11 @@ export default function App() {
         icon: props => <Ionicons {...props}/>
       }}
     >
-      <Routes />
+      <ProductsProvider>
+        <NavigationContainer>
+          <Routes />
+        </NavigationContainer>
+      </ProductsProvider>
     </PaperProvider>
   );
 }

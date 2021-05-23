@@ -4,41 +4,82 @@
             "id": 1,
             "productName": "Winter Coat",
             "productValue": "R$ 80,00",
-            "categorie": "coat"
+            "categorie": "coats",
+            "photo": "https://www.google.com/search?q=product+image&client=opera-gx&hs=UaF&sxsrf=ALeKk00lCdAap90G1LjS-m8tXG9YrkdRKQ:1621470691641&tbm=isch&source=iu&ictx=1&fir=nYQFUxHrhA0MMM%252CBfa8p_BERHYMYM%252C_&vet=1&usg=AI4_-kTdBCI1r-RKIMN6pAiOtVFOPDMq1g&sa=X&ved=2ahUKEwiT19qEgdfwAhU3K7kGHYM0DKIQ9QF6BAgPEAE&biw=1879&bih=939#imgrc=nYQFUxHrhA0MMM"
         },
         { 
             "id": 2,
             "productName": "Woolen Coat",
             "productValue": "R$ 86,45",
-            "categorie": "coat" 
+            "categorie": "coats",
+            "photo": "https://www.google.com/search?q=product+image&client=opera-gx&hs=UaF&sxsrf=ALeKk00lCdAap90G1LjS-m8tXG9YrkdRKQ:1621470691641&tbm=isch&source=iu&ictx=1&fir=nYQFUxHrhA0MMM%252CBfa8p_BERHYMYM%252C_&vet=1&usg=AI4_-kTdBCI1r-RKIMN6pAiOtVFOPDMq1g&sa=X&ved=2ahUKEwiT19qEgdfwAhU3K7kGHYM0DKIQ9QF6BAgPEAE&biw=1879&bih=939#imgrc=nYQFUxHrhA0MMM"
+
         },
         { 
             "id": 3,
             "productName": "Oversize Coat",
             "productValue": "R$ 65,00",
-            "categorie": "coat" 
+            "categorie": "coats",
+            "photo": "https://www.google.com/search?q=product+image&client=opera-gx&hs=UaF&sxsrf=ALeKk00lCdAap90G1LjS-m8tXG9YrkdRKQ:1621470691641&tbm=isch&source=iu&ictx=1&fir=nYQFUxHrhA0MMM%252CBfa8p_BERHYMYM%252C_&vet=1&usg=AI4_-kTdBCI1r-RKIMN6pAiOtVFOPDMq1g&sa=X&ved=2ahUKEwiT19qEgdfwAhU3K7kGHYM0DKIQ9QF6BAgPEAE&biw=1879&bih=939#imgrc=nYQFUxHrhA0MMM"
+
         },
         { 
             "id": 4,
             "productName": "Sizeheart Coat",
             "productValue": "R$ 104,00",
-            "categorie": "coat" 
+            "categorie": "coats",
+            "photo": "https://www.google.com/search?q=product+image&client=opera-gx&hs=UaF&sxsrf=ALeKk00lCdAap90G1LjS-m8tXG9YrkdRKQ:1621470691641&tbm=isch&source=iu&ictx=1&fir=nYQFUxHrhA0MMM%252CBfa8p_BERHYMYM%252C_&vet=1&usg=AI4_-kTdBCI1r-RKIMN6pAiOtVFOPDMq1g&sa=X&ved=2ahUKEwiT19qEgdfwAhU3K7kGHYM0DKIQ9QF6BAgPEAE&biw=1879&bih=939#imgrc=nYQFUxHrhA0MMM"
+
         },
         { 
             "id": 5,
             "productName": "Bighow Coat",
             "productValue": "R$ 99,00",
-            "categorie": "coat"
+            "categorie": "coats",
+            "photo": "https://www.google.com/search?q=product+image&client=opera-gx&hs=UaF&sxsrf=ALeKk00lCdAap90G1LjS-m8tXG9YrkdRKQ:1621470691641&tbm=isch&source=iu&ictx=1&fir=nYQFUxHrhA0MMM%252CBfa8p_BERHYMYM%252C_&vet=1&usg=AI4_-kTdBCI1r-RKIMN6pAiOtVFOPDMq1g&sa=X&ved=2ahUKEwiT19qEgdfwAhU3K7kGHYM0DKIQ9QF6BAgPEAE&biw=1879&bih=939#imgrc=nYQFUxHrhA0MMM"
+
         },
         { 
             "id": 6,
             "productName": "Custom Dresses",
             "productValue": "R$ 99,00",
-            "categorie": "dresses"
+            "categorie": "dresses",
+            "photo": "https://www.google.com/search?q=product+image&client=opera-gx&hs=UaF&sxsrf=ALeKk00lCdAap90G1LjS-m8tXG9YrkdRKQ:1621470691641&tbm=isch&source=iu&ictx=1&fir=nYQFUxHrhA0MMM%252CBfa8p_BERHYMYM%252C_&vet=1&usg=AI4_-kTdBCI1r-RKIMN6pAiOtVFOPDMq1g&sa=X&ved=2ahUKEwiT19qEgdfwAhU3K7kGHYM0DKIQ9QF6BAgPEAE&biw=1879&bih=939#imgrc=nYQFUxHrhA0MMM"
+
         }
     ],
-    "comments": [
-      { "id": 1, "body": "some comment", "postId": 1 }
+    "menus": [
+        {   
+            "id": 1,
+            "title": "Coats",
+            "active": true
+
+        },
+        {   
+            "id": 2,
+            "title": "Dresses",
+            "active": false
+        },
+        {   
+            "id": 3,
+            "title": "Jersey",
+            "active": false
+        },
+        {   
+            "id": 4,
+            "title": "Pants",
+            "active": false
+        },
+        {   
+            "id": 5,
+            "title": "Shirt",
+            "active": false
+        },
+        {   
+            "id": 6,
+            "title": "Boots",
+            "active": false
+        }
     ],
     "profile": { "name": "typicode" }
   }

@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react'
 import { Text, View, StyleSheet, Dimensions, PixelRatio } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
+import { ProductsContext } from '../context/ProductsContext';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 import { MenuItem } from './MenuItem';
@@ -13,7 +15,6 @@ interface MenuItemListProps {
 
 export function Menu(){
     
-
     //@ts-ignore
     const widthPercentageToDP = widthPercent => {
         const screenWidth = Dimensions.get('window').width;
@@ -25,41 +26,19 @@ export function Menu(){
         return PixelRatio.roundToNearestPixel(screenHeight * parseFloat(heightPercent) / 100);
     };
 
-    const [menuItemList, setMenuItemList] = useState<MenuItemListProps []>([
-        {   
-            id: 1,
-            title: 'Coats',
-            active: true,
+    const [menuItemList, setMenuItemList] = useState<MenuItemListProps []>([])
+    const { getProductsFilteredCategorie } = useContext(ProductsContext)
 
-        },
-        {   
-            id: 2,
-            title: 'Dresses',
-            active: false,
-        },
-        {   
-            id: 3,
-            title: 'Jersey',
-            active: false,
-        },
-        {   
-            id: 4,
-            title: 'Pants',
-            active: false,
-        },
-        {   
-            id: 5,
-            title: 'Shirt',
-            active: false,
-        },
-        {   
-            id: 6,
-            title: 'Boots',
-            active: false,
-        },
-    ])
+    function getMenus(){
+        axios({
+            method: 'GET',
+            url: 'http://10.0.0.106:3333/menus'
+        })
+        .then(response => setMenuItemList(response.data))
+        .catch(e => console.log(e))
+    }
 
-    function handleActiveItem(id: number){
+    function handleActiveItem(id: number, titleMenu: string){
         let newItemsList = menuItemList.map(item => {
             return item.id === id ? {
                 ...item,
@@ -68,8 +47,14 @@ export function Menu(){
                 active: false
             }
         })
+        
+        getProductsFilteredCategorie(titleMenu)
         setMenuItemList(newItemsList)
     }
+
+    useEffect(() => {
+        getMenus()
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -79,9 +64,10 @@ export function Menu(){
                     <MenuItem 
                         key={item.id}
                         name={item.title}
-                        onPress={() => handleActiveItem(item.id)}
+                        onPress={() => handleActiveItem(item.id, item.title)}
                         isActiveColor={item.active ? colors.pink100 : '#fff'}
                         fontFamily={item.active ? fonts.latoBold : fonts.latoRegular}
+
                     />
                 ))}
             </View>

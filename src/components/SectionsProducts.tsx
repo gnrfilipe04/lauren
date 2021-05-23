@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import { Dimensions, PixelRatio } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
+import React, { useContext } from 'react'
+import { Dimensions, Image, PixelRatio, Pressable, ScrollView, Text } from 'react-native'
 import { ProductCard } from './ProductCard'
-import {ProductCardProps} from './ProductCard'
+import { ProductsContext } from '../context/ProductsContext'
+import { useNavigation } from '@react-navigation/native';
+import { SharedElement } from 'react-navigation-shared-element'
+
 
 //@ts-ignore
 const widthPercentageToDP = widthPercent => {
@@ -16,36 +17,33 @@ const heightPercentageToDP = heightPercent => {
     return PixelRatio.roundToNearestPixel(screenHeight * parseFloat(heightPercent) / 100);
 };
 
-
 export function SectionsProducts(){
-    const [allProductsCard, setAllProductsCard] = useState<ProductCardProps []>([])
+    const { productsFilteredCategorie } = useContext(ProductsContext)
+    const navigation = useNavigation()
 
-    useEffect(() => {
-        axios({
-            method: 'get',
-            url:'http://10.0.0.106:3333/products',
-        })
-            .then(response => setAllProductsCard(response.data))
-            .catch(e => console.log(e))
-    }, [])
+    return( 
+        <ScrollView 
+            onMagicTap={() => scrollTo()}
+            style={{marginTop: 30, paddingLeft: 20}} 
+            horizontal={true} 
+            showsHorizontalScrollIndicator={false}>
 
-    function filteredCategorieProduct(categorie: string = 'coats'){
-        setAllProductsCard(allProductsCard.filter(product =>  product.categorie === categorie))
-    }
-
-    return(
-        <ScrollView style={{marginTop: 30, paddingLeft: 20}} horizontal={true} showsHorizontalScrollIndicator={false}>
-
-            {allProductsCard.map(product => (
-                <ProductCard 
-                    key={product.id}
-                    id={product.id}
-                    productName={product.productName}
-                    productValue={product.productValue}
-                    categorie={product.categorie}
-                    widthValue={widthPercentageToDP('52%')}
-                    heightValue={heightPercentageToDP('32%')}
-                />
+            {productsFilteredCategorie.map(product => (
+                <SharedElement key={product.id} id={String(product.id)}>
+                    <ProductCard 
+                        id={product.id}
+                        productName={product.productName}
+                        productValue={product.productValue}
+                        categorie={product.categorie}
+                        widthValue={widthPercentageToDP('60%')}
+                        heightValue={heightPercentageToDP('60%')}
+                        onPress={() => navigation.navigate('DetailProduct', {
+                            productId: String(product.id),
+                            productName: product.productName,
+                            productPhoto: product.photo
+                        })}/>
+                        
+                </SharedElement>
             ))}
 
         </ScrollView>

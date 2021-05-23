@@ -1,18 +1,75 @@
-import { createContext, ReactNode } from "react";
+import axios from "axios";
+import React, { createContext, ReactNode, useEffect, useState } from "react";
 
+export interface ProductProps {
+    id: number;
+    productName: string;
+    productValue: string;
+    categorie: string;
+    photo?: string;
+    widthValue?: number;
+    heightValue?: number;
+    
+}
 
-export const ProductsContext = createContext({})
+interface ProductsContextProps {
+    productsCard: ProductProps [];
+    productsFilteredCategorie: ProductProps [];
+    handleSetProductsCard: (value: ProductProps[]) => void;
+    handleSetProductsFilteredCategorie: (value: ProductProps[]) => void;
+    getProductsFilteredCategorie: (titleMenu: string) => void;
+}
+
+export const ProductsContext = createContext({} as ProductsContextProps)
 
 interface ProductsProviderProps {
     children: ReactNode;
 }
 
 export function ProductsProvider({children}: ProductsProviderProps){
+    const [productsCard, setProductsCard] = useState<ProductProps []>([])
+    const [productsFilteredCategorie, setProductsFilteredCategorie] = useState<ProductProps []>([])
+
+    function getProducts() {
+        axios({
+            method: 'get',
+            url:'http://10.0.0.106:3333/products',
+        })
+            .then(response => setProductsCard(response.data))
+            .catch(e => console.log(e))
+    }
+
+    function getProductsFilteredCategorie(titleMenu: string) {
+        setProductsFilteredCategorie(productsCard.filter(product => product.categorie === titleMenu.toLowerCase()))
+        console.log('filtrou')
+    }
+
+    function handleSetProductsCard(value: ProductProps[]){
+        setProductsCard(value)
+    }
+
+    function handleSetProductsFilteredCategorie(value: ProductProps[]){
+        setProductsFilteredCategorie(value)
+    }
+
+    useEffect(() => {
+        getProducts()
+    }, [])
+
+    useEffect(() => {
+        getProductsFilteredCategorie('coats')
+    }, [productsCard])
 
 
     return (
         <ProductsContext.Provider
-            value={{}}
+            value={{
+                productsCard,
+                productsFilteredCategorie,
+                handleSetProductsCard,
+                handleSetProductsFilteredCategorie,
+                getProductsFilteredCategorie
+            }}
         >
             {children}
         </ProductsContext.Provider>
