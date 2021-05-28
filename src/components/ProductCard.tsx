@@ -1,16 +1,16 @@
 import React from 'react'
 import { Text, View, StyleSheet, PressableProps, Pressable, Image } from 'react-native'
-import { SharedElement } from 'react-navigation-shared-element'
+import { redA700 } from 'react-native-paper/lib/typescript/styles/colors'
 import modelo from '../assets/modelo.png'
 
 import colors from '../styles/colors'
 import fonts from '../styles/fonts'
 
 export interface ProductCardProps extends PressableProps{
-    id: number;
+    id?: number;
     productName: string;
     productValue: string;
-    categorie: string;
+    categorie?: string;
     photo?: string;
     widthValue?: number;
     heightValue?: number;
@@ -22,7 +22,7 @@ export function ProductCard({ heightValue, widthValue, id, productName, productV
         <Pressable
             {...props}
         >   
-            <Image source={modelo} style={[ styles.container, { width: widthValue, height: heightValue}]}/>
+            <Image source={modelo} resizeMode='stretch' style={[ styles.container, { width: widthValue, height: heightValue}]}/>
             <View style={[styles.productNameContainer, { width: widthValue}]}>
                 <Text style={styles.productName}>{productName}</Text>  
                 <Text style={styles.productPrice}>{productValue}</Text>  
@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
     },
     productName: {
         fontFamily: fonts.latoBold,
-        fontSize: 18
+        fontSize: 18,
+        maxWidth: 130
     },
     productPrice: {
         fontFamily: fonts.latoBold,

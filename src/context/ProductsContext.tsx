@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { createContext, ReactNode, useEffect, useState } from "react";
+import api from "../services/api";
 
 export interface ProductProps {
     id: number;
@@ -31,10 +32,7 @@ export function ProductsProvider({children}: ProductsProviderProps){
     const [productsFilteredCategorie, setProductsFilteredCategorie] = useState<ProductProps []>([])
 
     function getProducts() {
-        axios({
-            method: 'get',
-            url:'http://10.0.0.106:3333/products',
-        })
+        api('/products')
             .then(response => setProductsCard(response.data))
             .catch(e => console.log(e))
     }

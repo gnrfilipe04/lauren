@@ -1,4 +1,13 @@
-export const data = [
+interface DataProps {
+  id: string;
+  title: string;
+  description: string;
+  image_url: string;
+  iconName: any;
+}
+
+
+export const data: DataProps[] = [
     {
       id: '1',
       title: 'Manarola, Italy',

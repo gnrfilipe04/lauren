@@ -3,7 +3,6 @@ import { Dimensions, Image, PixelRatio, Pressable, ScrollView, Text } from 'reac
 import { ProductCard } from './ProductCard'
 import { ProductsContext } from '../context/ProductsContext'
 import { useNavigation } from '@react-navigation/native';
-import { SharedElement } from 'react-navigation-shared-element'
 
 
 //@ts-ignore
@@ -29,21 +28,17 @@ export function SectionsProducts(){
             showsHorizontalScrollIndicator={false}>
 
             {productsFilteredCategorie.map(product => (
-                <SharedElement key={product.id} id={String(product.id)}>
-                    <ProductCard 
-                        id={product.id}
-                        productName={product.productName}
-                        productValue={product.productValue}
-                        categorie={product.categorie}
-                        widthValue={widthPercentageToDP('60%')}
-                        heightValue={heightPercentageToDP('60%')}
-                        onPress={() => navigation.navigate('DetailProduct', {
-                            productId: String(product.id),
-                            productName: product.productName,
-                            productPhoto: product.photo
-                        })}/>
-                        
-                </SharedElement>
+                <ProductCard 
+                    key={product.id}
+                    id={product.id}
+                    productName={product.productName}
+                    productValue={product.productValue}
+                    categorie={product.categorie}
+                    widthValue={widthPercentageToDP('55%')}
+                    heightValue={heightPercentageToDP('38%')}
+                    onPress={() => navigation.navigate('DetailProduct', {
+                        product
+                    })}/>
             ))}
 
         </ScrollView>
